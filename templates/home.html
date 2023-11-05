@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Соціальна мережа</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <nav>
+        <a href="/posts.html">Пости</a>
+        <a href="/register.html">Реєстрація</a>
+        <a href="/SocialNetwork.html">Головна</a>
+      <a href="/home.html">Домашня сторінка</a>
+      <a href="/profile">Профіль</a>
+      <a href="#">Друзі</a>
+      <a href="#">Повідомлення</a>
+    </nav>
+  </header>
+  <main>
+      <section class="registration">
+  <h2>Реєстрація користувача</h2>
+  <form action="/register" method="post">
+    <label for="username">Ім'я користувача:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="email">Електронна пошта:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+
+    <button type="submit">Зареєструватися</button>
+  </form>
+</section>
+    <section class="home">
+      <h2>Домашня сторінка</h2>
+      <p>Це домашня сторінка соціальної мережі.</p>
+      <p>Тут ви можете переглянути свою стрічку новин, свій профіль і своїх друзів.</p>
+    </section>
+
+  </main>
+  <footer>
+        <p>&copy; 2023 Соціальна мережа. Усі права захищені.</p>
+    </footer>
+</body>
+</html>

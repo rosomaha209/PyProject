@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Соціальна мережа</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Додаємо SweetAlert2 та стилі -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+</head>
+
+<body>
+  <header>
+    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <nav>
+        <a href="/register.html">Реєстрація</a>
+      <a href="/SocialNetwork.html">Головна</a>
+      <a href="/home.html">Домашня сторінка</a>
+      <a href="/profile">Профіль</a>
+      <a href="#">Друзі</a>
+      <a href="#">Повідомлення</a>
+    </nav>
+  </header>
+  <main>
+    <section class="registration">
+      <h2>Реєстрація користувача</h2>
+      <form action="/register" method="post">
+        <!-- Ваши поля для реєстрації -->
+        <label for="username">Ім'я користувача:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Електронна пошта:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Зареєструватися</button>
+      </form>
+
+      <!-- Додайте поле для входу -->
+      <h2>Вхід користувача</h2>
+      <form action="/login" method="post">
+        <label for="login-username">Ім'я користувача:</label>
+        <input type="text" id="login-username" name="login-username" required>
+
+        <label for="login-password">Пароль:</label>
+        <input type="password" id="login-password" name="login-password" required>
+
+        <button type="submit">Увійти</button>
+      </form>
+<h2>Перевірити погоду</h2>
+      <form method="post" action="/wether">
+    <label for="city">Введіть місто:</label>
+    <input type="text" name="city" id="city" placeholder="Ваше місто">
+    <button type="submit">Отримати погоду</button>
+</form>
+
+      <div id="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <script>
+          // Приклад використання SweetAlert для виведення повідомлення
+          Swal.fire({
+            title: '{{ category }}',
+            text: '{{ message }}',
+            icon: '{{ category }}',
+            showConfirmButton: false,
+            timer: 3000
+          });
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+    </section>
+
+  </main>
+  <footer>
+        <p>&copy; 2023 Соціальна мережа. Усі права захищені.</p>
+    </footer>
+</body>
+
+</html>

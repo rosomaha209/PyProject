@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Соціальна мережа</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Додаємо SweetAlert2 та стилі -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+</head>
+
+<body>
+  <header>
+    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <nav>
+        <a href="/register.html">Реєстрація</a>
+        <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="#">Друзі</a>
+      <a href="#">Повідомлення</a>
+    </nav>
+  </header>
+<div class="container">
+    <div class="user-info">
+        <h2>{{ username }}</h2>
+        <p>{{ email }}</p>
+        <img src="static/user_avatar.jpg" alt="Аватар користувача" width="100" height="100">
+        <p>Здесь може бути опис користувача, його інтереси, тощо.</p>
+    </div>
+    <div class="posts">
+        <section class="post-form">
+            <h3>Додати новий пост</h3>
+            <form action="/create_post" method="post">
+                <textarea name="post-content" placeholder="Введіть свій пост тут"></textarea>
+                <button type="submit">Опублікувати</button>
+            </form>
+        </section>
+        <section class="posts2">
+    <h3>Пости користувачів</h3>
+    {% for post in posts %}
+    <article class="post">
+        <img src="static/user_avatar.jpg" alt="Аватар користувача" width="50" height="50">
+        {% set post_parts = post.split(",", 1) %}
+        <h3>{{ post_parts[0] }}</h3>
+        {% set post_content = post_parts[1] %}
+        <p>{{ post_content }}</p>
+    </article>
+    {% endfor %}
+</section>
+
+    </div>
+</div>
+</body>
+
+</html>

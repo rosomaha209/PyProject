@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Соціальна мережа</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <header>
+    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <nav>
+        <a href="/posts.html">Пости</a>
+      <a href="/register.html">Реєстрація</a>
+      <a href="/SocialNetwork.html">Головна</a>
+      <a href="/home.html">Домашня сторінка</a>
+      <a href="/profile">Профіль</a>
+      <a href="#">Друзі</a>
+      <a href="#">Повідомлення</a>
+    </nav>
+  </header>
+  <main>
+    <section class="post-form">
+    <h3>Додати новий пост</h3>
+    <form action="/create_post" method="post">
+        <textarea name="post-content" placeholder="Введіть свій пост тут"></textarea>
+        <button type="submit">Опублікувати</button>
+    </form>
+</section>
+      <section class="posts">
+    {% for post in posts %}
+        <article class="post">
+            <h4>{{ post.username }}</h4>
+            <p>{{ post.text }}</p>
+        </article>
+    {% endfor %}
+</section>
+  </main>
+  <footer>
+        <p>&copy; 2023 Соціальна мережа. Усі права захищені.</p>
+    </footer>
+</body>
+
+</html>

@@ -7,7 +7,8 @@ bot = telebot.TeleBot("6772188030:AAH-RUxQoglEmghlIujwEifALFn01eaw6ZA")
 
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
-    mess = f'Привіт <b>{message.from_user.first_name}</b>,тут ти можеш дізнатися що віщують тобі зірки, щоб продовжити зайди в меню, або набери /menu'
+    mess = (f'Привіт <b>{message.from_user.first_name}</b>,тут ти можеш дізнатися що віщують тобі зірки, '
+            f'щоб продовжити зайди в меню, або набери /menu')
     bot.send_message(message.chat.id, mess, parse_mode='html')
 
     @bot.message_handler(func=lambda msg: True)
@@ -16,8 +17,27 @@ def send_welcome(message):
 
 
 ukr_to_eng_horoscope = {
-    "It may be that you've come back deeply changed from a long voyage. Of course, travel changes everyone to some extent, but in your case, the change is more profound. You're going to have a problem getting back into your old life. It may feel too limiting for you. So what are you waiting for? Change it!": "Можливо, ви повернулися глибоко зміненими після довгої подорожі. Звичайно, подорожі певною мірою змінюють кожного, але у вашому випадку зміни більш глибокі. У вас виникнуть проблеми з поверненням до старого життя. Це може здатися вам занадто обмежуючим. Так чого ви чекаєте? Зміни це!",
-    "The solar system is liable to trigger a transformation that will last several months. The change will center on the means you use to fulfill yourself in terms of your career and love life. If you feel hemmed in by your training or upbringing, you can expect to seek liberation from these inhibitions in the months to come.": "Сонячна система може спровокувати трансформацію, яка триватиме кілька місяців. Зміна буде зосереджена на засобах, які ви використовуєте для самореалізації в плані кар’єри та любовного життя. Якщо ви відчуваєте себе обмеженими своїм навчанням або вихованням, ви можете очікувати, що протягом наступних місяців ви зможете звільнитися від цих обмежень.",
+    "It may be that you've come back deeply changed from a long voyage. Of course, travel changes everyone to some "
+    "extent, but in your case, the change is more profound. You're going to have a problem getting back into your old "
+    "life. It may feel too limiting for you. So what are you waiting for? Change it!": "Можливо, ви повернулися "
+                                                                                       "глибоко зміненими після "
+                                                                                       "довгої подорожі. Звичайно, "
+                                                                                       "подорожі певною мірою "
+                                                                                       "змінюють кожного, "
+                                                                                       "але у вашому випадку зміни "
+                                                                                       "більш глибокі. У вас "
+                                                                                       "виникнуть проблеми з "
+                                                                                       "поверненням до старого життя. "
+                                                                                       "Це може здатися вам занадто "
+                                                                                       "обмежуючим. Так чого ви "
+                                                                                       "чекаєте? Зміни це!",
+    "The solar system is liable to trigger a transformation that will last several months. The change will center on "
+    "the means you use to fulfill yourself in terms of your career and love life. If you feel hemmed in by your "
+    "training or upbringing, you can expect to seek liberation from these inhibitions in the months to come.":
+        "Сонячна система може спровокувати трансформацію, яка триватиме кілька місяців. Зміна буде зосереджена на "
+        "засобах, які ви використовуєте для самореалізації в плані кар’єри та любовного життя. Якщо ви відчуваєте "
+        "себе обмеженими своїм навчанням або вихованням, ви можете очікувати, що протягом наступних місяців ви "
+        "зможете звільнитися від цих обмежень.",
     "Change": "Змінити"
     # Додайте відповідність для інших гороскопів
 }
@@ -89,6 +109,7 @@ def fetch_horoscope(message, sign):
         bot.send_message(message.chat.id, horoscope_message, parse_mode="Markdown")
     else:
         bot.send_message(message.chat.id, "Оберіть один з варіантів зі списку.")
+
 
 def get_daily_horoscope(sign: str, day: str) -> dict:
     """Отримати щоденний гороскоп для знака зодіаку.

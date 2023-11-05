@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Соціальна мережа</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Додаємо SweetAlert2 та стилі -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+</head>
+
+<body>
+<!--<script>-->
+<!--        if (navigator.geolocation) {-->
+<!--            navigator.geolocation.getCurrentPosition(function(position) {-->
+<!--                var lat = position.coords.latitude;-->
+<!--                var lon = position.coords.longitude;-->
+<!--                // Тут ви можете використовувати отримані координати-->
+<!--                console.log("Широта:", lat);-->
+<!--                console.log("Довгота:", lon);-->
+<!--            });-->
+<!--        } else {-->
+<!--            console.log("Геолокація не підтримується в браузері.");-->
+<!--        }-->
+<!--    </script>-->
+  <header>
+
+    <p class="weather-text">{{ wether }}</p>
+
+<p id="weather-info">{{ weather }}</p>
+    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <nav>
+      <a href="/register.html">Реєстрація</a>
+      <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="#">Друзі</a>
+      <a href="#">Повідомлення</a>
+    </nav>
+  </header>
+  <main>
+    <section class="registration">
+      <h2>Реєстрація користувача</h2>
+
+      <div id="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <script>
+          // Приклад використання SweetAlert для виведення повідомлення
+          Swal.fire({
+            title: '{{ category }}',
+            text: '{{ message }}',
+            icon: '{{ category }}',
+            showConfirmButton: false,
+            timer: 3000
+          });
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+    </section>
+    <section class="home">
+      <h2>Домашня сторінка</h2>
+      <p>Це домашня сторінка соціальної мережі.</p>
+      <p>Тут ви можете переглянути свою стрічку новин, свій профіль і своїх друзів.</p>
+    </section>
+    <section class="profile">
+      <h2>Профіль</h2>
+      <p>Це сторінка вашого профілю.</p>
+      <p>Ви увійшли як: <span id="username_placeholder">{{ username }}</span></p>
+      <p>Ваша емайл адреса: {{ email }}</p>
+      <p>Ви вибрали місто: {{ city }}</p>
+      <p>Ваш пароль: {{ password }}</p>
+      <p>Тут ви можете редагувати інформацію свого профілю, як-от ім’я, адресу електронної пошти та пароль.</p>
+    </section>
+    <section class="friends">
+      <h2>Друзі</h2>
+      <p>Це сторінка ваших друзів.</p>
+      <p>Тут ви можете побачити список своїх друзів та їхні профілі.</p>
+    </section>
+    <section class="messages">
+      <h2>Повідомлення</h2>
+      <p>Це ваша сторінка повідомлень.</p>
+      <p>Тут ви можете переглянути список своїх повідомлень і надіслати нові повідомлення друзям.</p>
+    </section>
+  </main>
+  <footer>
+        <p>&copy; 2023 Соціальна мережа. Усі права захищені.</p>
+    </footer>
+</body>
+
+</html>

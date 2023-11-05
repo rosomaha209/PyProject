@@ -1,0 +1,126 @@
+body {
+  font-family: sans-serif;
+  background-color:rgba(255, 255, 255, 0.194); /* Прозорий білий фон */
+}
+
+html {
+  background-image: url(background-image.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+header {
+  background-color: #97969c;
+  color: #ffffff;
+  padding: 1px;
+}
+
+nav {
+  float: right;
+  margin-top: 1em;
+}
+
+nav {
+  float: right;
+  margin-top: 1em;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #97969c;
+  color: #ffffff;
+  padding: 1px;
+  width: 20%; /* Задайте ширину панелі навігації за вашими потребами */
+  z-index: 100; /* Забезпечте, щоб панель навігації була видимою навіть якщо є інші блоки */
+}
+
+.main-content {
+  margin-top: 50px; /* Збільште відступ для контенту, щоб уникнути накладання панелі навігації */
+}
+
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+section {
+  margin-bottom: 2em;
+}
+
+.home {
+  background-color: #ccc;
+}
+
+.profile {
+  background-color: #ddd;
+}
+
+.friends {
+  background-color: #eee;
+}
+
+.messages {
+  background-color: #dddce0;
+}
+
+footer {
+  text-align: center;
+  padding: 1em;
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.user-info {
+    width: 30%; /* Задайте ширину для блоку інформації про користувача */
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.posts {
+    width: 90%; /* Задайте ширину для блоку з постами користувачів */
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.post-form {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.posts2 {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto; /* Додана прокрутка для блоку постів */
+    max-height: 400px; /* Максимальна висота блоку для прокрутки, змініть за потребою */
+}
+
+.post {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Стилізація тексту погоди */
+.weather-text {
+    font-size: 15px; /* Розмір тексту */
+    font-weight: bold; /* Жирний текст */
+    text-align: left; /* Вирівнювання по лівому краю */
+}
