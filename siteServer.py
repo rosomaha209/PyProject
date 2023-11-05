@@ -1,7 +1,7 @@
 import json
 from wether import get_weather
 from Translator import translate_text
-from sityname import get_city_name
+
 
 from flask import Flask, render_template, request, redirect, session, flash
 
@@ -165,7 +165,13 @@ def register():
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
-
+    # Отримайте завантажений файл (фото профілю)
+    photo = request.files['photo']
+    # Перевірте, чи файл було завантажено
+    if photo:
+        # Збережіть файл десь на сервері, наприклад, у папці "uploads"
+        photo.save(f'uploads/{username}.jpg')
+        # Ви можете створити імена файлів унікальними, щоб уникнути конфліктів.
     # Перевірка, чи користувача з таким іменем не існує вже
     if is_user_exists(username):
         flash("Користувач з таким іменем вже існує", "error")

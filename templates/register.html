@@ -38,7 +38,13 @@
 
         <button type="submit">Зареєструватися</button>
       </form>
-
+<form action="/register" method="post" enctype="multipart/form-data">
+    <!-- інші поля реєстрації -->
+    <label for="photo">Фото профілю:</label>
+    <input type="file" id="photo" name="photo">
+    <!-- інші поля реєстрації -->
+    <button type="submit">Завантажити</button>
+</form>
       <!-- Додайте поле для входу -->
       <h2>Вхід користувача</h2>
       <form action="/login" method="post">
@@ -50,6 +56,8 @@
 
         <button type="submit">Увійти</button>
       </form>
+
+
 <h2>Перевірити погоду</h2>
       <form method="post" action="/wether">
     <label for="city">Введіть місто:</label>
