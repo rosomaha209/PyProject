@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vi UA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   <!-- Додаємо SweetAlert2 та стилі -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+</head>
+
+<body>
+<!--<script>-->
+<!--        if (navigator.geolocation) {-->
+<!--            navigator.geolocation.getCurrentPosition(function(position) {-->
+<!--                var lat = position.coords.latitude;-->
+<!--                var lon = position.coords.longitude;-->
+<!--                // Тут ви можете використовувати отримані координати-->
+<!--                console.log("Широта:", lat);-->
+<!--                console.log("Довгота:", lon);-->
+<!--            });-->
+<!--        } else {-->
+<!--            console.log("Геолокація не підтримується в браузері.");-->
+<!--        }-->
+<!--    </script>-->
+  <header>
+
+    <p class="weather-text">{{ wether }}</p>
+
+<p id="weather-info">{{ weather }}</p>
+    <h1 style="text-align: center;">Vi UA</h1>
+    <nav>
+      <a href="/register">Реєстрація</a>
+      <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="/friends/{{ username }}">Друзі</a>
+      <a href="/message">Повідомлення</a>
+    </nav>
+  </header>
+  <main>
+
+<div id="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <script>
+          // Приклад використання SweetAlert для виведення повідомлення
+          Swal.fire({
+            title: '{{ category }}',
+            text: '{{ message }}',
+            icon: '{{ category }}',
+            showConfirmButton: false,
+            timer: 3000
+          });
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+ <h2>Список Друзів</h2>
+<ul>
+{% for i in range(friends|length) %}
+    <li>
+        <img src="/{{ photo[i] }}" alt="{{ friends[i].username }}'s Photo" width="50" height="50">
+        {{ name[i] }}
+
+         <span style="font-size: 10px;">ID: {{ friends[i] }}</span>
+
+        <form action="{{ url_for('message_with_friend', friend_userid=friends[i]) }}" method="get">
+            <button type="submit">Написати повідомлення</button>
+        </form>
+        <form action="/remove_friend" method="post">
+            <input type="hidden" name="friend_userid" value="{{ friends[i] }}">
+            <button type="submit">Видалити друга</button>
+        </form>
+        <br>
+    </li>
+{% endfor %}
+</ul>
+
+<h2>Всі користувачі на сайті</h2>
+<ul>
+    {% for user in all_users %}
+        <li>
+            {{ user.username }} ({{ user.userid }})
+            <form action="/add_friend" method="POST">
+                <input type="hidden" name="userid" value="{{ user.userid }}">
+                <input type="hidden" name="friend_userid" value="{{ user.userid }}">
+                <button type="submit">Додати до друзів</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+  </main>
+  <footer>
+        <p>&copy; 2023 Vi UA. Усі права захищені.</p>
+    </footer>
+</body>
+
+</html>

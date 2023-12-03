@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vi UA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+<header>
+    <h1 style="text-align: center;">Vi UA</h1>
+    <nav>
+        <a href="/register">Реєстрація</a>
+        <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="/friends/{{ username }}">Друзі</a>
+      <a href="/message">Повідомлення</a>
+    </nav>
+  </header>
+
+   <h1>User Dialogs</h1>
+    <p>Welcome, {{ username }}</p>
+
+    <ul>
+        {% for friend, messages in dialogs.items() %}
+            <li>
+                <strong>Dialog with {{ friend }}</strong>
+                {% if messages %}
+                    <p><strong>Latest message:</strong></p>
+                    <p><strong>Author:</strong> {{ messages[-1].author }}</p>
+                    <p><strong>Content:</strong> {{ messages[-1].content }}</p>
+                    <p><strong>Timestamp:</strong> {{ messages[-1].timestamp }}</p>
+                {% else %}
+                    <p>No messages yet.</p>
+                {% endif %}
+                <form method="get" action="{{ url_for('message_with_friend', friend_userid=friend) }}">
+                    <button type="submit">Chat with {{ friend }}</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

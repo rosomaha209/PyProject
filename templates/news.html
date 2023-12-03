@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vi UA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Додаємо SweetAlert2 та стилі -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+</head>
+
+<body>
+
+  <header>
+
+    <p class="weather-text">{{ wether }}</p>
+    <p id="weather-info">{{ weather }}</p>
+
+    <h1 style="text-align: center;">Vi UA</h1>
+    <nav>
+      <a href="/register">Реєстрація</a>
+      <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="/friends/{{ username }}">Друзі</a>
+      <a href="/message">Повідомлення</a>
+      <a href="/news">Новини</a>
+    </nav>
+  </header>
+  <main>
+      <form id="radio-form">
+          <p id="radio">KISS FM</p>
+          <div id="radio-player">
+    <button type="button" onclick="playRadio()">Play Radio</button>
+    <button type="button" onclick="stopRadio()">Stop Radio</button>
+              </div>
+</form>
+<h1 class="news-header">Актуальні новини <span class="news-category">
+        {% if category == 'business' %}Бізнес
+        {% elif category == 'entertainment' %}Розваги
+        {% elif category == 'general' %}Загальні
+        {% elif category == 'health' %}Здоров'я
+        {% elif category == 'science' %}Наука
+        {% elif category == 'sports' %}Спорт
+        {% elif category == 'technology' %}Технології
+        {% else %}Загальні
+        {% endif %}
+    </span></h1>
+    <form method="post" action="/news" class="news" id="newsForm">
+    <label for="category">Оберіть категорію:</label>
+    <select id="category" name="category" onchange="submitForm()">
+        <option value="business">Бізнес</option>
+        <option value="entertainment">Розваги</option>
+        <option value="general">Загальні</option>
+        <option value="health">Здоров'я</option>
+        <option value="science">Наука</option>
+        <option value="sports">Спорт</option>
+        <option value="technology">Технології</option>
+    </select>
+</form>
+
+<script>
+    function submitForm() {
+        document.getElementById('newsForm').submit();
+    }
+</script>
+    <ul>
+        {% for article in news %}
+            <li>
+                <h3>{{ article['title'] }}</h3>
+                <p>{{ article['description'] }}</p>
+                <a href="{{ article['url'] }}" target="_blank">Читати далі</a>
+            </li>
+        {% endfor %}
+    </ul>
+      <script>
+    var audio = new Audio();  // Створити об'єкт аудіоплеєра
+
+    function playRadio() {
+        audio.src = "http://online.kissfm.ua/KissFM";  // Задати URL вашої радіостанції
+        audio.play();  // Почати програвання
+    }
+
+    function stopRadio() {
+        audio.pause();  // Зупинити програвання
+    }
+</script>
+  </main>
+  <footer>
+        <p>&copy; 2023 Vi UA. Усі права захищені.</p>
+    </footer>
+</body>
+
+</html>

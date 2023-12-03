@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vi UA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+
+<body>
+<header>
+    <h1 style="text-align: center;">Vi UA</h1>
+    <nav>
+        <a href="/register">Реєстрація</a>
+        <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="/friends/{{ username }}">Друзі</a>
+      <a href="/message">Повідомлення</a>
+    </nav>
+  </header>
+<div class="container">
+    <div class="info-panel">
+        <p id="level">Level: 1</p>
+        <p id="timer">Time: 0 sec</p>
+    </div>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <!-- Your maze goes here -->
+    </div>
+</div>
+</body>
+
+</html>

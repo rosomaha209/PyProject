@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vi UA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <!-- Додаємо SweetAlert2 та стилі -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
+
+</head>
+
+<body>
+
+  <header>
+    <h1 style="text-align: center;">Vi UA</h1>
+    <nav>
+      <a href="/register">Реєстрація</a>
+      <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="/friends/{{ username }}">Друзі</a>
+      <a href="/message">Повідомлення</a>
+      <a href="/news">Новини</a>
+    </nav>
+  </header>
+  <main>
+ <h1>Налаштування</h1>
+    <form action="/update_settings" method="POST" enctype="multipart/form-data">
+        <label for="username">Імя:</label>
+        <input type="text" id="username" name="username" value="{{ user.username}}"><br><br>
+
+        <label for="usersurname">Прізвище:</label>
+        <input type="text" id="usersurname" name="usersurname" value="{{ user.usersurname}}"><br><br>
+
+        <label for="email">Емейл:</label>
+        <input type="email" id="email" name="email" value="{{ user.email}}"><br><br>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" value="{{ user.password}}"><br><br>
+
+        <label for="city">Місто:</label>
+        <input type="text" id="city" name="city" value="{{ user.city}}"><br><br>
+
+        <label for="dateofbirth">Дата народження у форматі РРРР-ММ-ДД:</label>
+        <input type="text" id="dateofbirth" name="dateofbirth" value="{{ user.dateofbirth}}"><br><br>
+
+        <label for="photo">Оберіть нове фото профілю:</label>
+        <input type="file" id="photo" name="photo">
+
+        <input type="submit" value="Save Changes">
+    </form>
+ <div id="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <script>
+          // Приклад використання SweetAlert для виведення повідомлення
+          Swal.fire({
+            title: '{{ category }}',
+            text: '{{ message }}',
+            icon: '{{ category }}',
+            showConfirmButton: false,
+            timer: 3000
+          });
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+
+  </main>
+  <footer>
+        <p>&copy; 2023 Vi UA. Усі права захищені.</p>
+  </footer>
+</body>
+
+</html>

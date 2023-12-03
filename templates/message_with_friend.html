@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Соціальна мережа</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+<header>
+    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <nav>
+        <a href="/register">Реєстрація</a>
+        <a href="/SocialNetwork.html">Головна</a>
+      <a href="/profile">Профіль</a>
+      <a href="/friends/{{ username }}">Друзі</a>
+      <a href="/message">Повідомлення</a>
+    </nav>
+  </header>
+
+
+    <title>Чат з {{ friend_username }}</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+<body class="body">
+    <h1 class="chat-header">Чат з {{ friend_username }}</h1>
+    <div class="chat-container">
+        <ul class="message-list">
+            {% for message in messages %}
+                <li class="message">
+                    <p class="message-author"><strong>Author:</strong> {{ users_dict[message.author] }}</p>
+                    <p class="message-content"><strong>Content:</strong> {{ message.content }}</p>
+                    <p class="message-timestamp"><strong>Timestamp:</strong> {{ message.timestamp }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <form class="message-form" method="post" action="{{ url_for('send_message') }}">
+        <input type="hidden" name="friend_userid" value="{{ friend_userid }}">
+        <input class="message-input" type="text" name="message" placeholder="Your message">
+        <button class="send-button" type="submit">Send</button>
+    </form>
+</body>
+</body>
+
+</html>

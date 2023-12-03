@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Соціальна мережа</title>
+  <title>Vi UA</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <!-- Додаємо SweetAlert2 та стилі -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -12,14 +12,12 @@
 
 <body>
   <header>
-    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <h1 style="text-align: center;">Vi UA</h1>
     <nav>
-        <a href="/register.html">Реєстрація</a>
       <a href="/SocialNetwork.html">Головна</a>
-      <a href="/home.html">Домашня сторінка</a>
-      <a href="/profile">Профіль</a>
-      <a href="#">Друзі</a>
-      <a href="#">Повідомлення</a>
+
+
+
     </nav>
   </header>
   <main>
@@ -38,18 +36,11 @@
 
         <button type="submit">Зареєструватися</button>
       </form>
-<form action="/register" method="post" enctype="multipart/form-data">
-    <!-- інші поля реєстрації -->
-    <label for="photo">Фото профілю:</label>
-    <input type="file" id="photo" name="photo">
-    <!-- інші поля реєстрації -->
-    <button type="submit">Завантажити</button>
-</form>
       <!-- Додайте поле для входу -->
       <h2>Вхід користувача</h2>
       <form action="/login" method="post">
-        <label for="login-username">Ім'я користувача:</label>
-        <input type="text" id="login-username" name="login-username" required>
+        <label for="login-email">Емайл користувача:</label>
+        <input type="text" id="login-email" name="login-email" required>
 
         <label for="login-password">Пароль:</label>
         <input type="password" id="login-password" name="login-password" required>
@@ -58,12 +49,7 @@
       </form>
 
 
-<h2>Перевірити погоду</h2>
-      <form method="post" action="/wether">
-    <label for="city">Введіть місто:</label>
-    <input type="text" name="city" id="city" placeholder="Ваше місто">
-    <button type="submit">Отримати погоду</button>
-</form>
+
 
       <div id="flash-messages">
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -87,7 +73,7 @@
 
   </main>
   <footer>
-        <p>&copy; 2023 Соціальна мережа. Усі права захищені.</p>
+        <p>&copy; 2023 Vi UA. Усі права захищені.</p>
     </footer>
 </body>
 

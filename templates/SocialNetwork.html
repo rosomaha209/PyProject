@@ -3,8 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Соціальна мережа</title>
+  <title>Vi UA</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
   <!-- Додаємо SweetAlert2 та стилі -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert2.min.css') }}">
@@ -25,17 +27,51 @@
 <!--        }-->
 <!--    </script>-->
   <header>
+<div class="weather-container">
+    <div class="weather-info">
+        <button type="button" id="update-weather-btn" class="update-btn">
+            <i class="fas fa-sync-alt"></i> <!-- Іконка оновлення -->
+        </button>
+        <p class="weather-text">{{ weather }}</p>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#update-weather-btn').click(function () {
+            // AJAX запит до сервера для оновлення погоди
+            $.ajax({
+                type: 'POST',
+                url: '/update_weather',  // URL, на який буде відправлений запит
+                success: function (data) {
+                    // Обробка успішно отриманих даних
+                    console.log('Погода оновлена:', data);
+                    // Оновлення погоди на сторінці (наприклад, виведення на екран)
+                    // ...
+                },
+                error: function (error) {
+                    // Обробка помилок
+                    console.error('Помилка оновлення погоди:', error);
+                }
+            });
+        });
+    });
+</script>
 
-    <p class="weather-text">{{ wether }}</p>
-
-<p id="weather-info">{{ weather }}</p>
-    <h1 style="text-align: center;">Соціальна мережа</h1>
+    <h1 style="text-align: center;">Vi UA</h1>
     <nav>
-      <a href="/register.html">Реєстрація</a>
+      <a href="/register">Реєстрація</a>
       <a href="/SocialNetwork.html">Головна</a>
       <a href="/profile">Профіль</a>
-      <a href="#">Друзі</a>
-      <a href="#">Повідомлення</a>
+      <a href="/friends/{{ username }}">Друзі</a>
+      <a href="/message">Повідомлення</a>
+      <a href="/news">Новини</a>
+      <a href="/game">Game</a>
+      <a href="/settings">Налаштування</a>
+      <!-- Logout button -->
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
     </nav>
   </header>
   <main>
@@ -69,7 +105,10 @@
     <section class="profile">
       <h2>Профіль</h2>
       <p>Це сторінка вашого профілю.</p>
+      <img src="/{{ photo }}" alt="Аватар користувача" width="100" height="100">
       <p>Ви увійшли як: <span id="username_placeholder">{{ username }}</span></p>
+
+      <p>Ваш ID: {{ userid }}</p>
       <p>Ваша емайл адреса: {{ email }}</p>
       <p>Ви вибрали місто: {{ city }}</p>
       <p>Ваш пароль: {{ password }}</p>
@@ -80,14 +119,32 @@
       <p>Це сторінка ваших друзів.</p>
       <p>Тут ви можете побачити список своїх друзів та їхні профілі.</p>
     </section>
+
+   <form action="/update_horoscope" method="post">
+    <button class="update-horoscope-btn" type="submit">
+        <i class="fas fa-sync-alt"></i> <!-- Іконка оновлення -->
+    </button>
+    <h2>{{ sign }}  {{ horoscopedate }}</h2>
+    <p class="weather-text">{{ horoscope }}</p>
+</form>
+
+
+
     <section class="messages">
       <h2>Повідомлення</h2>
       <p>Це ваша сторінка повідомлень.</p>
       <p>Тут ви можете переглянути список своїх повідомлень і надіслати нові повідомлення друзям.</p>
     </section>
+
+    <section class="video">
+      <h2>Відосіки</h2>
+      <p>Це ваша сторінка з відео.</p>
+      <p>Тут ви можете переглянути відосіки .</p>
+      <iframe width="640" height="360" src="https://www.youtube.com/embed/MC0zAol9WN4" title="Top 100 Christmas Songs of All Time 🎅🏼 Top Christmas Songs Playlist 🎄 Christmas Songs Medley 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </section>
   </main>
   <footer>
-        <p>&copy; 2023 Соціальна мережа. Усі права захищені.</p>
+        <p>&copy; 2023 Vi UA. Усі права захищені.</p>
     </footer>
 </body>
 
